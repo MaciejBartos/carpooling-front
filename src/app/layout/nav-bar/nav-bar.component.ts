@@ -23,7 +23,6 @@ export class NavBarComponent implements OnInit {
   }
 
   changeNavLinks(): void {
-    if (this.tokenStorage.isLoggedIn()) {
       this.navLinks = [
         {
           label: 'Maps',
@@ -44,9 +43,6 @@ export class NavBarComponent implements OnInit {
           forRoles: [Role.ROLE_ADMIN]
         }
       ];
-    } else {
-      this.navLinks = [];
-    }
   }
 
   getUserLogin(): string | null {
