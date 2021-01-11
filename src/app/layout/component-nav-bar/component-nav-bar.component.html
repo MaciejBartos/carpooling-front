@@ -1,0 +1,11 @@
+<nav mat-tab-nav-bar color="primary" mat-align-tabs="center">
+  <ng-container *ngFor="let link of navLinks">
+    <a mat-tab-link *ngIf="isUserInRole(link)"
+       [routerLink]="link.link"
+       routerLinkActive="active-link" #rla="routerLinkActive"
+       [active]="rla.isActive"
+       [routerLinkActiveOptions]="{exact: true}">
+      {{link.label}}
+    </a>
+  </ng-container>
+</nav>

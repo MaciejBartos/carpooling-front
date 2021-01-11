@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <mat-form-field class="login-form-field">
+      <mat-label>Login</mat-label>
+      <input matInput matNativeControl [formControl]="loginControl" required>
+      <mat-error *ngIf="loginControl.invalid">error</mat-error>
+    </mat-form-field>
+    <mat-form-field class="password-form-field">
+      <mat-label>Password</mat-label>
+      <input matInput matNativeControl type="password" [formControl]="passwordControl" required>
+      <mat-error *ngIf="passwordControl.invalid">error</mat-error>
+    </mat-form-field>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="signIn()">Login</button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
+

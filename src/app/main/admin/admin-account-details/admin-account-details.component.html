@@ -1,0 +1,42 @@
+<h2>Personal data</h2>
+<mat-card>
+  <mat-card-title>Account details</mat-card-title>
+  <mat-card-content>
+    <mat-card-subtitle>Account</mat-card-subtitle>
+    <div>
+      <div>Email</div>
+      <div>{{accountDetails.account.email}}</div>
+    </div>
+    <mat-card-subtitle>Address</mat-card-subtitle>
+    <div>
+      <div>City</div>
+      <div>{{accountDetails.address.city}}</div>
+    </div>
+    <div>
+      <div>Street</div>
+      <div>{{accountDetails.address.street}}</div>
+    </div>
+    <div>
+      <div>House number</div>
+      <div>{{accountDetails.address.houseNumber}}</div>
+    </div>
+    <mat-card-subtitle>Personal data</mat-card-subtitle>
+    <div>
+      <div>Name</div>
+      <div>{{accountDetails.personalData.name}}</div>
+    </div>
+    <div>
+      <div>Surname</div>
+      <div>{{accountDetails.personalData.surname}}</div>
+    </div>
+    <div>
+      <div>Years</div>
+      <div>{{accountDetails.personalData.yearsOld}}</div>
+    </div>
+    <div class="account-details-bar-actions">
+      <button mat-raised-button color="primary">Change password</button>
+      <button mat-raised-button color="warn">Deactivate</button>
+      <button mat-raised-button color="primary">Activate</button>
+    </div>
+  </mat-card-content>
+</mat-card>

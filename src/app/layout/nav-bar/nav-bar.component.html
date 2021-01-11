@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="main-toolbar">
+  <span>Carpooling app</span>
+  <div class="guest-actions-container" *ngIf="getUserLogin() === ''">
+        <button mat-button [routerLink]="['login']">Zaloguj się</button>
+        <button mat-button [routerLink]="['register']">Zarejestruj się</button>
+  </div>
+  <nav mat-tab-nav-bar color="primary" backgroundColor="primary" mat-align-tabs="center" class="wrapper-horizontal" *ngIf="isLoggedIn()">
+    <ng-container *ngFor="let link of navLinks">
+      <a mat-tab-link *ngIf="isUserInRole(link)"
+         [routerLink]="link.link"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive"
+         [routerLinkActiveOptions]="{exact: false}">
+        {{link.label}}
+      </a>
+    </ng-container>
+  </nav>
+  <div *ngIf="getUserLogin() !== ''" class="user-menu-container">
+    <span>{{getUserLogin()}}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" asia-label="User menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['user']">
+        <mat-icon>dialpad</mat-icon>
+        <span>panel użytkowika</span>
+      </button>
+      <button mat-menu-item (click)="signOut()">
+        <mat-icon>voicemail</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+
