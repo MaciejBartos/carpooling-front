@@ -14,7 +14,7 @@ export class AdminPanelComponent implements OnInit {
     this.navLinks = [
       {
         label: 'Accounts list',
-        link: '/admin/account',
+        link: '/admin/account/list',
         index: 0,
         forRoles: [Role.ROLE_ADMIN]
       }

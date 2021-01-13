@@ -46,7 +46,13 @@ export class LoginComponent implements OnInit {
         this.toastrService.success('logged in');
         this.router.navigateByUrl('/');
       }, error => {
-        this.toastrService.error('Wrong credentials');
+        if (error.error.error === 'Bad credentials') {
+          this.toastrService.error('Wrong credentials');
+        } else if (error.error.error === 'User is disabled') {
+          this.toastrService.error('Your account has been disable, please contact with administrator');
+        } else {
+          this.toastrService.error('Something went wrong, please try again');
+        }
       });
 
   }

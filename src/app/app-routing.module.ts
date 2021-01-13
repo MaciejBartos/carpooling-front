@@ -9,9 +9,11 @@ import {AccountDetailsComponent} from './main/account/account-panel/account-deta
 import {AccountDetailsResolver} from './main/resolver/account-details.resolver';
 import {EditAccountPasswordComponent} from './main/account/account-panel/edit-account-password/edit-account-password.component';
 import {AdminAccountListComponent} from './main/admin/admin-account-list/admin-account-list.component';
-import {AccountsListResolver} from './main/resolver/accounts-list-resolver.service';
+import {AccountsListResolver} from './main/resolver/accounts-list.resolver';
 import {AdminAccountDetailsComponent} from './main/admin/admin-account-details/admin-account-details.component';
 import {AdminPanelComponent} from './main/admin/admin-panel/admin-panel.component';
+import {AccountDetailsAdminResolver} from './main/resolver/account-details-admin.resolver';
+import {AdminAccountEditPasswordComponent} from './main/admin/admin-account-details/admin-account-edit-password/admin-account-edit-password.component';
 
 const routes: Routes = [
   {
@@ -44,14 +46,24 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'account/list',
+        pathMatch: 'full'
+      },
+      {
+        path: 'account/list',
         component: AdminAccountListComponent,
         resolve: {accounts: AccountsListResolver},
       },
       {
-        path: '',
+        path: 'account/details/:id',
         component: AdminAccountDetailsComponent,
-        resolve: {account: AccountDetailsResolver}
+        resolve: {account: AccountDetailsAdminResolver}
       },
+      {
+        path: 'account/details/:id/password',
+        component: AdminAccountEditPasswordComponent,
+        resolve: {account: AccountDetailsAdminResolver}
+      }
     ]
   },
   {

@@ -1,11 +1,18 @@
-<h2>Personal data</h2>
 <mat-card>
   <mat-card-title>Account details</mat-card-title>
   <mat-card-content>
     <mat-card-subtitle>Account</mat-card-subtitle>
     <div>
+      <div>Login</div>
+      <div>{{accountDetails.account.login}}</div>
+    </div>
+    <div>
       <div>Email</div>
       <div>{{accountDetails.account.email}}</div>
+    </div>
+    <div>
+      <div>Status</div>
+      <div>{{accountDetails.account.active ? 'Active' : 'Inactive'}} </div>
     </div>
     <mat-card-subtitle>Address</mat-card-subtitle>
     <div>
@@ -34,9 +41,9 @@
       <div>{{accountDetails.personalData.yearsOld}}</div>
     </div>
     <div class="account-details-bar-actions">
-      <button mat-raised-button color="primary">Change password</button>
-      <button mat-raised-button color="warn">Deactivate</button>
-      <button mat-raised-button color="primary">Activate</button>
+      <button mat-raised-button color="primary" (click)="redirectToPasswordChange()">Change password</button>
+      <button mat-raised-button *ngIf="accountDetails.account.active" color="warn" (click)="changeAccountStatus()">Deactivate</button>
+      <button mat-raised-button *ngIf="!accountDetails.account.active" color="primary" (click)="changeAccountStatus()">Activate</button>
     </div>
   </mat-card-content>
 </mat-card>

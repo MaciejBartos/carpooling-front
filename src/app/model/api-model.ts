@@ -1,11 +1,23 @@
+export interface ChangeAccountStatusRequest {
+  id: string;
+}
+
 export interface Account {
-  id: number;
+  id: string;
+  login: string;
+  email: string;
+  active: boolean;
+  version: number;
+}
+
+export interface EditAccountData {
+  id: string;
   email: string;
   version: number;
 }
 
 export interface AccountDetailsForList {
-  id: number;
+  id: string;
   name: string;
   surname: string;
   email: string;
@@ -19,7 +31,7 @@ export interface GetAccountsResponse {
 }
 
 export interface PersonalData {
-  id: number;
+  id: string;
   name: string;
   surname: string;
   yearsOld: number;
@@ -27,7 +39,7 @@ export interface PersonalData {
 }
 
 export interface Address {
-  id: number;
+  id: string;
   city: string;
   street: string;
   houseNumber: number;
@@ -83,5 +95,11 @@ export interface ChangePasswordRequest {
   accountId: string;
   oldPassword: string;
   newPassword: string;
+  repeatPassword: string;
+}
+
+export interface ChangePasswordAsAdminRequest {
+  accountId: string;
+  password: string;
   repeatPassword: string;
 }
