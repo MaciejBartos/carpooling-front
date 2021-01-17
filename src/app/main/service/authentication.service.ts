@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {AccountDetails, SignIn, SignInResponse, SignUp} from '../../model/api-model';
+import {ConfirmAccountRequest, SignIn, SignInResponse, SignUp} from '../../model/api-model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +26,9 @@ export class AuthenticationService {
 
   public registerUser(signUp: SignUp): void {
     this.httpClient.post(this.apiUrl + this.authenticationResource + '/signup', signUp, this.httpOptions).subscribe();
+  }
+
+  public confirmAccount(confirmAccountRequest: ConfirmAccountRequest): Observable<void> {
+    return this.httpClient.put<void>(this.apiUrl + this.authenticationResource + '/confirm', confirmAccountRequest, this.httpOptions);
   }
 }

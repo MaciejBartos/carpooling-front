@@ -26,6 +26,7 @@ import { AdminAccountDetailsComponent } from './main/admin/admin-account-details
 import { AdminPanelComponent } from './main/admin/admin-panel/admin-panel.component';
 import { ComponentNavBarComponent } from './layout/component-nav-bar/component-nav-bar.component';
 import { AdminAccountEditPasswordComponent } from './main/admin/admin-account-details/admin-account-edit-password/admin-account-edit-password.component';
+import { ConfirmAccountComponent } from './main/authentication/confirm-account/confirm-account.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { AdminAccountEditPasswordComponent } from './main/admin/admin-account-de
     AdminPanelComponent,
     ComponentNavBarComponent,
     AdminAccountEditPasswordComponent,
+    ConfirmAccountComponent,
   ],
   imports: [
     BrowserModule,

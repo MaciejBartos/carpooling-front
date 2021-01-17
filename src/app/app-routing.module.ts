@@ -14,6 +14,7 @@ import {AdminAccountDetailsComponent} from './main/admin/admin-account-details/a
 import {AdminPanelComponent} from './main/admin/admin-panel/admin-panel.component';
 import {AccountDetailsAdminResolver} from './main/resolver/account-details-admin.resolver';
 import {AdminAccountEditPasswordComponent} from './main/admin/admin-account-details/admin-account-edit-password/admin-account-edit-password.component';
+import {ConfirmAccountComponent} from './main/authentication/confirm-account/confirm-account.component';
 
 const routes: Routes = [
   {
@@ -72,7 +73,11 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegistrationComponent
+    component: RegistrationComponent,
+  },
+  {
+    path: 'register/confirm',
+    component: ConfirmAccountComponent
   },
   {
     path: 'map',

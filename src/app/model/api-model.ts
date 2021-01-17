@@ -103,3 +103,7 @@ export interface ChangePasswordAsAdminRequest {
   password: string;
   repeatPassword: string;
 }
+
+export interface ConfirmAccountRequest {
+  token: string;
+}
