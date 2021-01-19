@@ -19,7 +19,6 @@ export class ConfirmAccountComponent implements OnInit {
               private router: Router) {
     route.queryParams.subscribe(params => {
       this.token = params.token;
-      console.log(this.token);
     });
   }
 

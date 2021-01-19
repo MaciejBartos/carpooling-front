@@ -15,6 +15,8 @@ import {AdminPanelComponent} from './main/admin/admin-panel/admin-panel.componen
 import {AccountDetailsAdminResolver} from './main/resolver/account-details-admin.resolver';
 import {AdminAccountEditPasswordComponent} from './main/admin/admin-account-details/admin-account-edit-password/admin-account-edit-password.component';
 import {ConfirmAccountComponent} from './main/authentication/confirm-account/confirm-account.component';
+import {ForgotPasswordComponent} from './main/account/forgot-password/forgot-password.component';
+import {ResetPasswordComponent} from './main/account/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -70,6 +72,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
   },
   {
     path: 'register',

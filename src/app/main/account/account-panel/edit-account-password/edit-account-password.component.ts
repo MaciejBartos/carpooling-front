@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, ValidatorFn, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../service/token-storage.service';
 import {AccountService} from '../../../service/account.service';
 import {ChangePasswordRequest} from '../../../../model/api-model';
 import {ToastrService} from 'ngx-toastr';
+import {
+  arePasswordTheSameValidator,
+  isCurrentPasswordCorrect,
+  isNewPasswordDiffersFromCurrent
+} from '../../../../share/validator/password/password-validators';
 
 @Component({
   selector: 'app-edit-account-password',
@@ -68,7 +73,7 @@ export class EditAccountPasswordComponent implements OnInit {
       repeatPassword: this.repeatNewPasswordControl.value
     };
 
-    this.accountService.updateAccountPassword(request).subscribe(data => {
+    this.accountService.updateAccountPassword(request).subscribe(() => {
       this.toastrService.success('Password changed successfully');
       this.currentPasswordControl.setValue(null);
       this.currentPasswordControl.markAsUntouched();
@@ -90,31 +95,4 @@ export class EditAccountPasswordComponent implements OnInit {
       }
     });
   }
-}
-
-export function arePasswordTheSameValidator(newPassword: FormControl): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} | null => {
-    const result = newPassword.value === control.value;
-    return result ? null : {arePasswordTheSame: {valid: false}};
-  };
-}
-
-export function isCurrentPasswordCorrect(currentPasswordCorrect: boolean): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} | null => {
-    if (control.untouched) {
-      return null;
-    }
-    const result = currentPasswordCorrect && control.dirty;
-    return result ? null : {isCurrentPasswordCorrect: {valid: false}};
-  };
-}
-
-export function isNewPasswordDiffersFromCurrent(samePassword: boolean): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} | null => {
-    if (control.untouched) {
-      return null;
-    }
-    const result = samePassword && control.dirty;
-    return result ? null : {isNewPasswordDiffersFromCurrent: {valid: false}};
-  };
 }

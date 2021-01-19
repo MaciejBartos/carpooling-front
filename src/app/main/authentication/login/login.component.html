@@ -11,7 +11,8 @@
       <input matInput matNativeControl type="password" [formControl]="passwordControl" required>
       <mat-error *ngIf="passwordControl.invalid">error</mat-error>
     </mat-form-field>
-    <mat-card-actions>
+    <mat-card-actions class="actions">
+      <a routerLink="../forgot-password" class="forgot-password-action">Forgot Password?</a>
       <button mat-raised-button color="primary" (click)="signIn()">Login</button>
     </mat-card-actions>
   </mat-card-content>

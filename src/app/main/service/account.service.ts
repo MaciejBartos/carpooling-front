@@ -3,12 +3,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {
-  Account,
   AccountDetails,
   ChangeAccountStatusRequest, ChangePasswordAsAdminRequest,
   ChangePasswordRequest,
   EditAccountData,
-  GetAccountsResponse
+  GetAccountsResponse, ResetPasswordRequest, SendResetPasswordEmailRequest, VerifyResetPasswordTokenRequest
 } from '../../model/api-model';
 
 @Injectable({
@@ -59,5 +58,17 @@ export class AccountService {
       searchCriteria
     };
     return this.httpClient.post<GetAccountsResponse>(this.apiUrl + this.resource + '/admin', request, this.httpOptions);
+  }
+
+  public sendResetPasswordEmail(request: SendResetPasswordEmailRequest): Observable<void> {
+    return this.httpClient.post<void>(this.apiUrl + this.resource + '/password/reset', request, this.httpOptions);
+  }
+
+  public resetPassword(request: ResetPasswordRequest): Observable<void> {
+    return this.httpClient.put<void>(this.apiUrl + this.resource + '/password/reset', request, this.httpOptions);
+  }
+
+  public verifyResetPasswordToken(request: VerifyResetPasswordTokenRequest): Observable<void> {
+    return this.httpClient.post<void>(this.apiUrl + this.resource + '/password/reset/verify', request, this.httpOptions);
   }
 }

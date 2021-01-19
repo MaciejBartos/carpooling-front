@@ -27,6 +27,8 @@ import { AdminPanelComponent } from './main/admin/admin-panel/admin-panel.compon
 import { ComponentNavBarComponent } from './layout/component-nav-bar/component-nav-bar.component';
 import { AdminAccountEditPasswordComponent } from './main/admin/admin-account-details/admin-account-edit-password/admin-account-edit-password.component';
 import { ConfirmAccountComponent } from './main/authentication/confirm-account/confirm-account.component';
+import { ForgotPasswordComponent } from './main/account/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './main/account/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { ConfirmAccountComponent } from './main/authentication/confirm-account/c
     ComponentNavBarComponent,
     AdminAccountEditPasswordComponent,
     ConfirmAccountComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

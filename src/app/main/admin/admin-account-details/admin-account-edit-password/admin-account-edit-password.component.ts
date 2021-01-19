@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, ValidatorFn, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../service/token-storage.service';
 import {ToastrService} from 'ngx-toastr';
 import {AccountService} from '../../../service/account.service';
 import {ChangePasswordAsAdminRequest} from '../../../../model/api-model';
 import {ActivatedRoute} from '@angular/router';
+import {arePasswordTheSameValidator, isNewPasswordDiffersFromCurrent} from '../../../../share/validator/password/password-validators';
 
 @Component({
   selector: 'app-admin-account-edit-password',
@@ -80,21 +81,4 @@ export class AdminAccountEditPasswordComponent implements OnInit {
   checkIfControllersAreValid(): boolean {
     return this.newPasswordControl.valid && this.repeatNewPasswordControl.valid;
   }
-}
-
-export function arePasswordTheSameValidator(newPassword: FormControl): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    const result = newPassword.value === control.value;
-    return result ? null : {arePasswordTheSame: {valid: false}};
-  };
-}
-
-export function isNewPasswordDiffersFromCurrent(samePassword: boolean): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    if (control.untouched) {
-      return null;
-    }
-    const result = samePassword && control.dirty;
-    return result ? null : {isNewPasswordDiffersFromCurrent: {valid: false}};
-  };
 }

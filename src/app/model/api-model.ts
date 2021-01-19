@@ -107,3 +107,17 @@ export interface ChangePasswordAsAdminRequest {
 export interface ConfirmAccountRequest {
   token: string;
 }
+
+export interface SendResetPasswordEmailRequest {
+  email: string;
+}
+
+export interface ResetPasswordRequest {
+  token: string;
+  password: string;
+  repeatPassword: string;
+}
+
+export interface VerifyResetPasswordTokenRequest {
+  token: string;
+}
