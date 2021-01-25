@@ -20,11 +20,9 @@ export class LoginComponent implements OnInit {
               private toastrService: ToastrService,
               private router: Router) {
     this.loginControl = new FormControl('', [
-      Validators.maxLength(20),
       Validators.required
     ]);
     this.passwordControl = new FormControl('', [
-      Validators.maxLength(20),
       Validators.required
     ]);
   }
@@ -33,6 +31,10 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
+    this.markAllFormControlsAsTouched();
+    if (!(this.loginControl.valid && this.passwordControl.valid)) {
+      return;
+    }
     const signInRequest = {
       login: this.loginControl.value,
       password: this.passwordControl.value
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveUserLogin(data.login);
         this.tokenStorage.saveRoles(data.roles);
         this.tokenStorage.saveAccountId(data.id);
-        this.toastrService.success('logged in');
+        this.toastrService.success('Logged in');
         this.router.navigateByUrl('/');
       }, error => {
         if (error.error.error === 'Bad credentials') {
@@ -55,6 +57,11 @@ export class LoginComponent implements OnInit {
         }
       });
 
+  }
+
+  markAllFormControlsAsTouched(): void {
+    this.loginControl.markAsTouched();
+    this.passwordControl.markAsTouched();
   }
 
 }

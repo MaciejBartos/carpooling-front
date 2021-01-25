@@ -18,18 +18,18 @@ import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/goog
 import {ToastrModule} from 'ngx-toastr';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthenticationInterceptor} from './main/interceptor/authentication.interceptor';
-import { AccountNavBarComponent } from './main/account/account-panel/account-nav-bar/account-nav-bar.component';
-import { EditAccountPasswordComponent } from './main/account/account-panel/edit-account-password/edit-account-password.component';
-import { AdminAccountListComponent } from './main/admin/admin-account-list/admin-account-list.component';
-import { AccountListTableComponent } from './main/admin/admin-account-list/account-list-table/account-list-table.component';
-import { AdminAccountDetailsComponent } from './main/admin/admin-account-details/admin-account-details.component';
-import { AdminPanelComponent } from './main/admin/admin-panel/admin-panel.component';
-import { ComponentNavBarComponent } from './layout/component-nav-bar/component-nav-bar.component';
-import { AdminAccountEditPasswordComponent } from './main/admin/admin-account-details/admin-account-edit-password/admin-account-edit-password.component';
-import { ConfirmAccountComponent } from './main/authentication/confirm-account/confirm-account.component';
-import { ForgotPasswordComponent } from './main/account/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './main/account/reset-password/reset-password.component';
-
+import {AccountNavBarComponent} from './main/account/account-panel/account-nav-bar/account-nav-bar.component';
+import {EditAccountPasswordComponent} from './main/account/account-panel/edit-account-password/edit-account-password.component';
+import {AdminAccountListComponent} from './main/admin/admin-account-list/admin-account-list.component';
+import {AccountListTableComponent} from './main/admin/admin-account-list/account-list-table/account-list-table.component';
+import {AdminAccountDetailsComponent} from './main/admin/admin-account-details/admin-account-details.component';
+import {AdminPanelComponent} from './main/admin/admin-panel/admin-panel.component';
+import {ComponentNavBarComponent} from './layout/component-nav-bar/component-nav-bar.component';
+import {AdminAccountEditPasswordComponent} from './main/admin/admin-account-details/admin-account-edit-password/admin-account-edit-password.component';
+import {ConfirmAccountComponent} from './main/authentication/confirm-account/confirm-account.component';
+import {ForgotPasswordComponent} from './main/account/forgot-password/forgot-password.component';
+import {ResetPasswordComponent} from './main/account/reset-password/reset-password.component';
+import {MAT_DATE_LOCALE} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -72,7 +72,8 @@ import { ResetPasswordComponent } from './main/account/reset-password/reset-pass
     }),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'}
   ],
   bootstrap: [AppComponent]
 })

@@ -24,8 +24,8 @@ export class AuthenticationService {
     return this.httpClient.post<SignInResponse>(this.apiUrl + this.authenticationResource + '/signin', signIn, this.httpOptions);
   }
 
-  public registerUser(signUp: SignUp): void {
-    this.httpClient.post(this.apiUrl + this.authenticationResource + '/signup', signUp, this.httpOptions).subscribe();
+  public registerUser(signUp: SignUp): Observable<void> {
+    return this.httpClient.post<void>(this.apiUrl + this.authenticationResource + '/signup', signUp, this.httpOptions);
   }
 
   public confirmAccount(confirmAccountRequest: ConfirmAccountRequest): Observable<void> {

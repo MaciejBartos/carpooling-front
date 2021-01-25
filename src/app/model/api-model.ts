@@ -58,7 +58,7 @@ export interface SignUp {
   password: string;
   name: string;
   surname: string;
-  yearsOld: number;
+  birthDate: Date;
   city: string;
   street: string;
   houseNumber: number;
