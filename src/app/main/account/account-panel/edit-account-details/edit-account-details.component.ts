@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AccountDetails} from '../../../../model/api-model';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 import {AccountService} from '../../../service/account.service';
 import {PersonalDataService} from '../../../service/personal-data.service';
 import {AddressService} from '../../../service/address.service';
-import { forkJoin } from 'rxjs';
+import {forkJoin} from 'rxjs';
 import {TokenStorageService} from '../../../service/token-storage.service';
 
 @Component({
@@ -13,13 +13,13 @@ import {TokenStorageService} from '../../../service/token-storage.service';
   templateUrl: './edit-account-details.component.html',
   styleUrls: ['./edit-account-details.component.less']
 })
-export class EditAccountDetailsComponent implements OnInit {
+export class EditAccountDetailsComponent {
 
   accountDetails: AccountDetails;
   emailFormControl: FormControl;
   nameFormControl: FormControl;
   surnameFormControl: FormControl;
-  yearsFormControl: FormControl;
+  birthDateFormControl: FormControl;
   cityFormControl: FormControl;
   streetFormControl: FormControl;
   houseNumberFormControl: FormControl;
@@ -34,9 +34,6 @@ export class EditAccountDetailsComponent implements OnInit {
     this.initAccountFormControls();
   }
 
-  ngOnInit(): void {
-  }
-
   save(): void {
     const requestsList = [];
     if (this.emailFormControl.dirty) {
@@ -47,12 +44,12 @@ export class EditAccountDetailsComponent implements OnInit {
       };
       requestsList.push(this.accountService.updateAccountInformation(request));
     }
-    if (this.nameFormControl.dirty || this.surnameFormControl.dirty || this.yearsFormControl.dirty) {
+    if (this.nameFormControl.dirty || this.surnameFormControl.dirty || this.birthDateFormControl.dirty) {
       const request = {
         id: this.accountDetails.personalData.id,
         name: this.nameFormControl.value,
         surname: this.surnameFormControl.value,
-        yearsOld: this.yearsFormControl.value,
+        birthDate: this.getDateWithCorrectTimeOffset(),
         version: this.accountDetails.personalData.version
       };
       requestsList.push(this.personalDataService.updatePersonalData(request));
@@ -67,7 +64,7 @@ export class EditAccountDetailsComponent implements OnInit {
       };
       requestsList.push(this.addressService.updateAddress(request));
     }
-    forkJoin(requestsList).subscribe(results => {
+    forkJoin(requestsList).subscribe(() => {
       this.accountService.getAccountDetailsByLogin(this.tokenStorage.getUserLogin()).subscribe(
         account => {
           this.accountDetails = account;
@@ -80,10 +77,15 @@ export class EditAccountDetailsComponent implements OnInit {
     return this.emailFormControl.valid && this.cityFormControl.valid &&
       this.streetFormControl.valid && this.houseNumberFormControl.valid &&
       this.nameFormControl.valid && this.surnameFormControl.valid &&
-      this.yearsFormControl.valid;
+      this.birthDateFormControl.valid;
   }
 
-  initAccountFormControls(): void {
+  getDateWithCorrectTimeOffset(): Date {
+    this.birthDateFormControl.value.setHours(this.birthDateFormControl.value.getHours() + 1);
+    return this.birthDateFormControl.value;
+  }
+
+  private initAccountFormControls(): void {
     this.emailFormControl = new FormControl(this.accountDetails.account.email, {
       validators: [
         Validators.required,
@@ -106,12 +108,9 @@ export class EditAccountDetailsComponent implements OnInit {
         Validators.maxLength(30)
       ]
     });
-    this.yearsFormControl = new FormControl(this.accountDetails.personalData.yearsOld, {
-      validators: [
-        Validators.required,
-        Validators.pattern(new RegExp('^[1-9][0-9]?'))
-      ]
-    });
+    this.birthDateFormControl = new FormControl(new Date(this.accountDetails.personalData.birthDate), [
+      Validators.required,
+    ]);
     this.cityFormControl = new FormControl(this.accountDetails.address.city, {
       validators: [
         Validators.required,

@@ -15,7 +15,6 @@ export class AdminPanelComponent implements OnInit {
       {
         label: 'Accounts list',
         link: '/admin/account/list',
-        index: 0,
         forRoles: [Role.ROLE_ADMIN]
       }
     ];

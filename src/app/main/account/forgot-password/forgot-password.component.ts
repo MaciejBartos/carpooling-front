@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {AccountService} from '../../service/account.service';
 import {SendResetPasswordEmailRequest} from '../../../model/api-model';
@@ -9,7 +9,7 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.less']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
 
   emailControl: FormControl;
 
@@ -21,9 +21,6 @@ export class ForgotPasswordComponent implements OnInit {
         Validators.email,
       ]
     });
-  }
-
-  ngOnInit(): void {
   }
 
   sendResetPasswordEmail(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {AccountService} from '../../service/account.service';
 import {ToastrService} from 'ngx-toastr';
 import {FormControl, Validators} from '@angular/forms';
@@ -11,7 +11,7 @@ import {ResetPasswordRequest, VerifyResetPasswordTokenRequest} from '../../../mo
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.less']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent {
 
   passwordControl: FormControl;
   repeatNewPasswordControl: FormControl;
@@ -45,9 +45,6 @@ export class ResetPasswordComponent implements OnInit {
         arePasswordTheSameValidator(this.passwordControl)
       ]
     });
-  }
-
-  ngOnInit(): void {
   }
 
   changePassword(): void {

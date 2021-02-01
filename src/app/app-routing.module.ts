@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AccountPanelComponent} from './main/account/account-panel/account-panel.component';
 import {LoginComponent} from './main/authentication/login/login.component';
 import {RegistrationComponent} from './main/authentication/registration/registration.component';
@@ -17,6 +17,12 @@ import {AdminAccountEditPasswordComponent} from './main/admin/admin-account-deta
 import {ConfirmAccountComponent} from './main/authentication/confirm-account/confirm-account.component';
 import {ForgotPasswordComponent} from './main/account/forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './main/account/reset-password/reset-password.component';
+import {VehicleEditDetailsComponent} from './main/vehicle/vehicle-edit-details/vehicle-edit-details.component';
+import {VehicleDetailsResolver} from './main/resolver/vehicle-details.resolver';
+import {VehiclePanelComponent} from './main/vehicle/vehicle-panel/vehicle-panel.component';
+import {VehicleCreateComponent} from './main/vehicle/vehicle-create/vehicle-create.component';
+import {VehicleListComponent} from './main/vehicle/vehicle-list/vehicle-list.component';
+import {VehicleListResolver} from './main/resolver/vehicle-list.resolver';
 
 const routes: Routes = [
   {
@@ -92,6 +98,31 @@ const routes: Routes = [
   {
     path: 'map',
     component: MapComponent
+  },
+  {
+    path: 'vehicle',
+    component: VehiclePanelComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full'
+      },
+      {
+        path: 'create',
+        component: VehicleCreateComponent
+      },
+      {
+        path: 'list',
+        component: VehicleListComponent,
+        resolve: {vehicles: VehicleListResolver}
+      },
+      {
+        path: ':id',
+        component: VehicleEditDetailsComponent,
+        resolve: {vehicle: VehicleDetailsResolver}
+      },
+    ]
   }
 ];
 

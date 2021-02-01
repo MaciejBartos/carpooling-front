@@ -11,8 +11,7 @@ import {NavLink, Role} from '../../model/api-model';
 })
 export class NavBarComponent implements OnInit {
 
-  navLinks: any[] = [];
-  activeLinkIndex = -1;
+  navLinks: NavLink[] = [];
 
   constructor(private tokenStorage: TokenStorageService,
               private router: Router) {
@@ -27,20 +26,22 @@ export class NavBarComponent implements OnInit {
         {
           label: 'Maps',
           link: '/map',
-          index: 0,
-          forRoles: [Role.ROLE_ADMIN]
+          forRoles: [Role.ROLE_USER, Role.ROLE_ADMIN]
         },
         {
           label: 'Profile',
           link: '/user',
-          index: 1,
           forRoles: [Role.ROLE_USER, Role.ROLE_ADMIN]
         },
         {
           label: 'Admin panel',
           link: '/admin',
-          index: 2,
           forRoles: [Role.ROLE_ADMIN]
+        },
+        {
+          label: 'Vehicle',
+          link: '/vehicle',
+          forRoles: [Role.ROLE_USER]
         }
       ];
   }

@@ -4,10 +4,15 @@ import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {
   AccountDetails,
-  ChangeAccountStatusRequest, ChangePasswordAsAdminRequest,
+  ChangeAccountStatusRequest,
+  ChangePasswordAsAdminRequest,
   ChangePasswordRequest,
   EditAccountData,
-  GetAccountsResponse, ResetPasswordRequest, SendResetPasswordEmailRequest, VerifyResetPasswordTokenRequest
+  GetAccountsResponse,
+  GetAccountsSearchCriteriaRequest,
+  ResetPasswordRequest,
+  SendResetPasswordEmailRequest,
+  VerifyResetPasswordTokenRequest
 } from '../../model/api-model';
 
 @Injectable({
@@ -53,10 +58,7 @@ export class AccountService {
     return this.httpClient.put<void>(this.apiUrl + this.resource + '/admin/password', request, this.httpOptions);
   }
 
-  public getAccounts(searchCriteria: string): Observable<GetAccountsResponse> {
-    const request = {
-      searchCriteria
-    };
+  public getAccounts(request: GetAccountsSearchCriteriaRequest): Observable<GetAccountsResponse> {
     return this.httpClient.post<GetAccountsResponse>(this.apiUrl + this.resource + '/admin', request, this.httpOptions);
   }
 

@@ -1,1 +1,8 @@
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput type="text" [(ngModel)]="searchCriteria">
+  <button mat-button matSuffix mat-icon-button (click)="getAccountsWithSearchCriteria()">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>
 <app-account-list-table [items]="accounts"></app-account-list-table>

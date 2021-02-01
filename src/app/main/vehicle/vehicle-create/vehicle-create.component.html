@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-title>Add new vehicle</mat-card-title>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>Brand</mat-label>
+      <input matInput matNativeControl [formControl]="brandControl" autocomplete="off" required>
+      <mat-error *ngIf="brandControl.hasError('maxlength')">Brand is too long</mat-error>
+      <mat-error *ngIf="brandControl.hasError('pattern')">Brand field is not valid</mat-error>
+      <mat-error *ngIf="brandControl.hasError('required')">Brand is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <input matInput matNativeControl [formControl]="modelControl" autocomplete="off" required>
+      <mat-error *ngIf="modelControl.hasError('maxlength')">Model is too long</mat-error>
+      <mat-error *ngIf="modelControl.hasError('pattern')">Model field is not valid</mat-error>
+      <mat-error *ngIf="modelControl.hasError('required')">Model is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Production date in years</mat-label>
+      <input matInput matNativeControl type="number" [formControl]="productionYearControl" autocomplete="off" required>
+      <mat-error *ngIf="productionYearControl.hasError('required')">Production year is required</mat-error>
+      <mat-error *ngIf="productionYearControl.hasError('min')">Value is not valid</mat-error>
+      <mat-error *ngIf="productionYearControl.hasError('max')">Value is not valid</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Number of seats</mat-label>
+      <input matInput matNativeControl type="number" [formControl]="numberOfSeatsControl" autocomplete="off" required>
+      <mat-error *ngIf="numberOfSeatsControl.hasError('required')">Number of seats field is required</mat-error>
+      <mat-error *ngIf="numberOfSeatsControl.hasError('max')">Value is too big</mat-error>
+      <mat-error *ngIf="numberOfSeatsControl.hasError('min')">Value is too small</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput [formControl]="descriptionControl"></textarea>
+      <mat-error *ngIf="descriptionControl.hasError('pattern')">Description contains invalid characters</mat-error>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="createVehicle()">Add</button>
+  </mat-card-actions>
+</mat-card>

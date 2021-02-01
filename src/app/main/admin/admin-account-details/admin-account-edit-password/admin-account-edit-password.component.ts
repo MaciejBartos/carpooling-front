@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../service/token-storage.service';
 import {ToastrService} from 'ngx-toastr';
@@ -12,7 +12,7 @@ import {arePasswordTheSameValidator, isNewPasswordDiffersFromCurrent} from '../.
   templateUrl: './admin-account-edit-password.component.html',
   styleUrls: ['./admin-account-edit-password.component.less']
 })
-export class AdminAccountEditPasswordComponent implements OnInit {
+export class AdminAccountEditPasswordComponent {
 
   newPasswordControl: FormControl;
   repeatNewPasswordControl: FormControl;
@@ -40,9 +40,6 @@ export class AdminAccountEditPasswordComponent implements OnInit {
         arePasswordTheSameValidator(this.newPasswordControl)
       ]
     });
-  }
-
-  ngOnInit(): void {
   }
 
   changePassword(): void {

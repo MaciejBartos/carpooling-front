@@ -30,6 +30,12 @@ import {ConfirmAccountComponent} from './main/authentication/confirm-account/con
 import {ForgotPasswordComponent} from './main/account/forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './main/account/reset-password/reset-password.component';
 import {MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {VehicleEditDetailsComponent} from './main/vehicle/vehicle-edit-details/vehicle-edit-details.component';
+import {VehiclePanelComponent} from './main/vehicle/vehicle-panel/vehicle-panel.component';
+import {VehicleCreateComponent} from './main/vehicle/vehicle-create/vehicle-create.component';
+import {VehicleListComponent} from './main/vehicle/vehicle-list/vehicle-list.component';
+import { VehicleListTableComponent } from './main/vehicle/vehicle-list/vehicle-list-table/vehicle-list-table.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +58,11 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
     ConfirmAccountComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    VehicleEditDetailsComponent,
+    VehiclePanelComponent,
+    VehicleCreateComponent,
+    VehicleListComponent,
+    VehicleListTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +81,7 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    MatPaginatorModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {AccountDetails} from '../../../model/api-model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from '../../service/account.service';
-import {AbstractControl, FormControl, ValidatorFn} from '@angular/forms';
 
 @Component({
   selector: 'app-admin-account-details',

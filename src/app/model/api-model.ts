@@ -34,7 +34,7 @@ export interface PersonalData {
   id: string;
   name: string;
   surname: string;
-  yearsOld: number;
+  birthDate: Date;
   version: number;
 }
 
@@ -87,7 +87,6 @@ export enum Role {
 export interface NavLink {
   label: string;
   link: string;
-  index: number;
   forRoles: Role[];
 }
 
@@ -121,3 +120,46 @@ export interface ResetPasswordRequest {
 export interface VerifyResetPasswordTokenRequest {
   token: string;
 }
+
+export interface GetAccountsSearchCriteriaRequest {
+  searchCriteria: string;
+}
+
+export interface UpdateVehicleRequest {
+  id: string;
+  model: string;
+  brand: string;
+  productionYear: number;
+  numberOfSeats: number;
+  description: string;
+  version: number;
+}
+
+export interface VehicleDetailsToUpdateResponse {
+  id: string;
+  model: string;
+  brand: string;
+  productionYear: number;
+  numberOfSeats: number;
+  description: string;
+  version: number;
+}
+
+export interface VehicleDetailsForList {
+  id: string;
+  brand: string;
+  model: string;
+}
+
+export interface VehicleAssignedToAccountResponse {
+  vehicles: VehicleDetailsForList[];
+}
+
+export interface CreateVehicleRequest {
+  brand: string;
+  model: string;
+  productionYear: number;
+  description: string;
+  numberOfSeats: number;
+}
+

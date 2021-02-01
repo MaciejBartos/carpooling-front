@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../../service/token-storage.service';
 import {AccountService} from '../../../service/account.service';
@@ -15,7 +15,7 @@ import {
   templateUrl: './edit-account-password.component.html',
   styleUrls: ['./edit-account-password.component.less']
 })
-export class EditAccountPasswordComponent implements OnInit {
+export class EditAccountPasswordComponent {
 
   currentPasswordControl: FormControl;
   newPasswordControl: FormControl;
@@ -50,9 +50,6 @@ export class EditAccountPasswordComponent implements OnInit {
         Validators.maxLength(40),
         arePasswordTheSameValidator(this.newPasswordControl)
       ]});
-  }
-
-  ngOnInit(): void {
   }
 
   changePassword(): void {
