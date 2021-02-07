@@ -1,0 +1,6 @@
+<app-direction-create-map #map (destinationCoordinatesEvent)="destinationCoordinates=$event"
+                          (destinationAddressEvent)="destinationAddress=$event"
+                          (originAddressEvent)="originAddress=$event"
+                          (originCoordinatesEvent)="originCoordinates=$event"></app-direction-create-map>
+
+<button mat-raised-button (click)="saveDirection()">Save</button>

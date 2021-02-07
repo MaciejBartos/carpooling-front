@@ -1,0 +1,5 @@
+<agm-map [zoom]="14" [latitude]="directionDetails.origin.latitude" [longitude]="directionDetails.origin.longitude">
+  <agm-direction [origin]="originForMap"
+                 [destination]="destinationForMap"
+                 [waypoints]="waypointsForMap"></agm-direction>
+</agm-map>

@@ -163,3 +163,52 @@ export interface CreateVehicleRequest {
   numberOfSeats: number;
 }
 
+export interface ILatLng {
+  latitude: number;
+  longitude: number;
+}
+
+export interface LatitudeLongitude {
+  latitude: number;
+  longitude: number;
+}
+
+export interface CreateDirectionRequest {
+  vehicleId: string;
+  origin: LatitudeLongitude;
+  originAddress: string;
+  destination: LatitudeLongitude;
+  destinationAddress: string;
+  waypoints: LatitudeLongitude[];
+  travelDate: Date;
+  numberOfFreeSeats: number;
+}
+
+export interface DirectionDetailsForList {
+  directionId: string;
+  originAddress: string;
+  destinationAddress: string;
+  driverName: string;
+  driverSurname: string;
+  travelDate: Date;
+}
+
+export interface GetDirectionsResponse {
+  directions: DirectionDetailsForList[];
+}
+
+export interface GetDirectionDetailsResponse {
+  vehicleBrand: string;
+  vehicleModel: string;
+  vehicleProductionYear: string;
+  driverName: string;
+  driverSurname: string;
+  origin: LatitudeLongitude;
+  originAddress: string;
+  destination: LatitudeLongitude;
+  destinationAddress: string;
+  steps: LatitudeLongitude[];
+  travelDate: Date;
+  numberOfAvailableSeats: number;
+}
+

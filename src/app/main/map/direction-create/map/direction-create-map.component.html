@@ -1,0 +1,31 @@
+<agm-map [zoom]="14" [latitude]="latitudeFromBrowser"
+         [longitude]="longitudeFromBrowser"
+         (mapClick)="addWaypoint($event)">
+  <agm-marker *ngIf="originSet && !(originSet && destinationSet)"
+              [latitude]="origin.lat"
+              [longitude]="origin.lng"></agm-marker>
+  <agm-marker *ngIf="destinationSet && !(originSet && destinationSet)"
+              [latitude]="destination.lat"
+              [longitude]="destination.lng"></agm-marker>
+  <agm-marker *ngFor="let waypoint of waypoints"
+              [longitude]="getLongitudeFromWaypoint(waypoint)"
+              [latitude]="getLatitudeFromWaypoint(waypoint)"
+              (markerClick)="deleteWaypoint(waypoint)"></agm-marker>
+  <agm-direction *ngIf="originSet && destinationSet"
+                 [origin]="origin"
+                 [destination]="destination"
+                 [waypoints]="waypoints"
+                 (onResponse)="saveDirection($event)"></agm-direction>
+</agm-map>
+
+<mat-google-maps-autocomplete country="pl"
+                              type="address"
+                              (onAutocompleteSelected)="emitOriginAddress($event)"
+                              (onLocationSelected)="setOriginMarker($event)">
+</mat-google-maps-autocomplete>
+
+<mat-google-maps-autocomplete country="pl"
+                              type="address"
+                              (onAutocompleteSelected)="emitDestinationAddress($event)"
+                              (onLocationSelected)="setDestinationMarker($event)">
+</mat-google-maps-autocomplete>

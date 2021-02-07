@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {NavLink, Role} from '../../../model/api-model';
 
 @Component({
@@ -6,7 +6,7 @@ import {NavLink, Role} from '../../../model/api-model';
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.less']
 })
-export class AdminPanelComponent implements OnInit {
+export class AdminPanelComponent {
 
   navLinks: NavLink[] = [];
 
@@ -18,9 +18,6 @@ export class AdminPanelComponent implements OnInit {
         forRoles: [Role.ROLE_ADMIN]
       }
     ];
-  }
-
-  ngOnInit(): void {
   }
 
 }

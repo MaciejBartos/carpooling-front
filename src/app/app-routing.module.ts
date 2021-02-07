@@ -4,7 +4,6 @@ import {AccountPanelComponent} from './main/account/account-panel/account-panel.
 import {LoginComponent} from './main/authentication/login/login.component';
 import {RegistrationComponent} from './main/authentication/registration/registration.component';
 import {EditAccountDetailsComponent} from './main/account/account-panel/edit-account-details/edit-account-details.component';
-import {MapComponent} from './main/map/map.component';
 import {AccountDetailsComponent} from './main/account/account-panel/account-details/account-details.component';
 import {AccountDetailsResolver} from './main/resolver/account-details.resolver';
 import {EditAccountPasswordComponent} from './main/account/account-panel/edit-account-password/edit-account-password.component';
@@ -23,6 +22,12 @@ import {VehiclePanelComponent} from './main/vehicle/vehicle-panel/vehicle-panel.
 import {VehicleCreateComponent} from './main/vehicle/vehicle-create/vehicle-create.component';
 import {VehicleListComponent} from './main/vehicle/vehicle-list/vehicle-list.component';
 import {VehicleListResolver} from './main/resolver/vehicle-list.resolver';
+import {MapPanelComponent} from './main/map/map-panel.component';
+import {DirectionCreateComponent} from './main/map/direction-create/direction-create.component';
+import {DirectionListComponent} from './main/map/direction-list/direction-list.component';
+import {DirectionsListResolver} from './main/resolver/directions-list.resolver';
+import {DirectionDetailsComponent} from './main/map/direction-details/direction-details.component';
+import {DirectionDetailsResolver} from './main/resolver/direction-details.resolver';
 
 const routes: Routes = [
   {
@@ -97,7 +102,28 @@ const routes: Routes = [
   },
   {
     path: 'map',
-    component: MapComponent
+    component: MapPanelComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full'
+      },
+      {
+        path: 'create',
+        component: DirectionCreateComponent
+      },
+      {
+        path: 'list',
+        component: DirectionListComponent,
+        resolve: {directions: DirectionsListResolver}
+      },
+      {
+        path: ':id',
+        component: DirectionDetailsComponent,
+        resolve: {direction: DirectionDetailsResolver}
+      }
+    ]
   },
   {
     path: 'vehicle',

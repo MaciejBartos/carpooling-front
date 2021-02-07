@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import localePL from '@angular/common/locales/pl';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -12,13 +13,11 @@ import {LoginComponent} from './main/authentication/login/login.component';
 import {RegistrationComponent} from './main/authentication/registration/registration.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditAccountDetailsComponent} from './main/account/account-panel/edit-account-details/edit-account-details.component';
-import {MapComponent} from './main/map/map.component';
 import {AgmCoreModule} from '@agm/core';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {ToastrModule} from 'ngx-toastr';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthenticationInterceptor} from './main/interceptor/authentication.interceptor';
-import {AccountNavBarComponent} from './main/account/account-panel/account-nav-bar/account-nav-bar.component';
 import {EditAccountPasswordComponent} from './main/account/account-panel/edit-account-password/edit-account-password.component';
 import {AdminAccountListComponent} from './main/admin/admin-account-list/admin-account-list.component';
 import {AccountListTableComponent} from './main/admin/admin-account-list/account-list-table/account-list-table.component';
@@ -36,6 +35,17 @@ import {VehiclePanelComponent} from './main/vehicle/vehicle-panel/vehicle-panel.
 import {VehicleCreateComponent} from './main/vehicle/vehicle-create/vehicle-create.component';
 import {VehicleListComponent} from './main/vehicle/vehicle-list/vehicle-list.component';
 import { VehicleListTableComponent } from './main/vehicle/vehicle-list/vehicle-list-table/vehicle-list-table.component';
+import {AgmDirectionModule} from 'agm-direction';
+import {environment} from '../environments/environment';
+import { DirectionCreateComponent } from './main/map/direction-create/direction-create.component';
+import { MapPanelComponent } from './main/map/map-panel.component';
+import { DirectionListComponent } from './main/map/direction-list/direction-list.component';
+import { DirectionCreateMapComponent } from './main/map/direction-create/map/direction-create-map.component';
+import { DirectionListTableComponent } from './main/map/direction-list/direction-list-table/direction-list-table.component';
+import {registerLocaleData} from '@angular/common';
+import { DirectionDetailsComponent } from './main/map/direction-details/direction-details.component';
+
+registerLocaleData(localePL);
 
 @NgModule({
   declarations: [
@@ -46,8 +56,6 @@ import { VehicleListTableComponent } from './main/vehicle/vehicle-list/vehicle-l
     LoginComponent,
     RegistrationComponent,
     EditAccountDetailsComponent,
-    MapComponent,
-    AccountNavBarComponent,
     EditAccountPasswordComponent,
     AdminAccountListComponent,
     AccountListTableComponent,
@@ -63,6 +71,12 @@ import { VehicleListTableComponent } from './main/vehicle/vehicle-list/vehicle-l
     VehicleCreateComponent,
     VehicleListComponent,
     VehicleListTableComponent,
+    DirectionCreateComponent,
+    MapPanelComponent,
+    DirectionListComponent,
+    DirectionCreateMapComponent,
+    DirectionListTableComponent,
+    DirectionDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +86,7 @@ import { VehicleListTableComponent } from './main/vehicle/vehicle-list/vehicle-l
     ReactiveFormsModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBZZwBxKiXwKXCmDpNjd6tIzzBwKj_3tEU',
+      apiKey: environment.googleApiKey,
       libraries: ['places']
     }),
     MatGoogleMapsAutocompleteModule,
@@ -82,10 +96,12 @@ import { VehicleListTableComponent } from './main/vehicle/vehicle-list/vehicle-l
       preventDuplicates: true,
     }),
     MatPaginatorModule,
+    AgmDirectionModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
-    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'}
+    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
+    { provide: LOCALE_ID, useValue: 'pl' }
   ],
   bootstrap: [AppComponent]
 })
