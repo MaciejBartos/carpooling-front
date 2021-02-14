@@ -1,5 +1,60 @@
-<agm-map [zoom]="14" [latitude]="directionDetails.origin.latitude" [longitude]="directionDetails.origin.longitude">
-  <agm-direction [origin]="originForMap"
-                 [destination]="destinationForMap"
-                 [waypoints]="waypointsForMap"></agm-direction>
-</agm-map>
+<div class="direction-details">
+  <mat-card>
+    <mat-card-content>
+      <agm-map [zoom]="14" [latitude]="directionDetails.origin.latitude" [longitude]="directionDetails.origin.longitude">
+        <agm-direction [origin]="originForMap"
+                       [destination]="destinationForMap"
+                       [waypoints]="waypointsForMap"></agm-direction>
+      </agm-map>
+    <mat-grid-list cols="2" rowHeight="3:1" >
+      <mat-grid-tile>
+        <div style="width: 90%;height: 80%;">
+          <mat-card-title class="mat-card-title-field">Driver information</mat-card-title>
+          <div style="padding: 20px 0;">
+            <div class="same-line-div">
+              <div>Name surname: </div>
+              <div>{{directionDetails.driverName + ' ' + directionDetails.driverSurname}}</div>
+            </div>
+          </div>
+          <mat-card-title class="mat-card-title-field">Vehicle information</mat-card-title>
+          <div style="padding: 20px 0;">
+            <div class="same-line-div">
+              <div>Vehicle: </div>
+              <div>{{directionDetails.vehicleBrand + ' ' + directionDetails.vehicleModel}}</div>
+            </div>
+            <div class="same-line-div">
+              <div>Production date: </div>
+              <div>{{directionDetails.vehicleProductionYear}}</div>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div style="width: 90%;height: 80%;">
+          <mat-card-title class="mat-card-title-field">Direction information</mat-card-title>
+          <div style="padding: 20px 0;">
+            <div class="same-line-div">
+              <div>Origin: </div>
+              <div>{{directionDetails.originAddress}}</div>
+            </div>
+            <div class="same-line-div">
+              <div>Destination: </div>
+              <div>{{directionDetails.destinationAddress}}</div>
+            </div>
+            <div class="same-line-div">
+              <div>Travel date: </div>
+              <div>{{showDate(directionDetails.travelDate)}}</div>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions style="text-align: center; padding-top: 10px">
+      <button mat-raised-button color="primary" *ngIf="directionDetails.assignAction"
+              (click)="assign()">Assign</button>
+      <button mat-raised-button color="warn" *ngIf="directionDetails.resignAction"
+              (click)="resign()">Resign</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

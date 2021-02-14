@@ -1,1 +1,34 @@
-<app-direction-list-table [items]="directions"></app-direction-list-table>
+<mat-card>
+  <mat-card-content class="address-bar">
+    <mat-google-maps-autocomplete addressLabelText="Origin address" class="address-input" country="pl"
+                                  type="address"
+                                  (onLocationSelected)="setOriginMarker($event)">
+    </mat-google-maps-autocomplete>
+    <mat-google-maps-autocomplete addressLabelText="Destination address" class="address-input" country="pl"
+                                  type="address"
+                                  (onLocationSelected)="setDestinationMarker($event)">
+    </mat-google-maps-autocomplete>
+    <mat-form-field class="distance-input">
+      <mat-label>Distance (km)</mat-label>
+      <input matInput matNativeControl [formControl]="distance" required/>
+      <mat-error *ngIf="distance.hasError('required')">Distance is required</mat-error>
+      <mat-error *ngIf="distance.hasError('pattern')">Invalid format</mat-error>
+    </mat-form-field>
+    <mat-form-field class="travel-date-input">
+      <mat-label>Travel date</mat-label>
+      <input matInput [formControl]="travelDate" [matDatepicker]="picker" [readonly]="true" autocomplete="off" required>
+      <mat-error *ngIf="travelDate.hasError('required')">Travel date is required</mat-error>
+      <mat-error *ngIf="travelDate.hasError('dateLater')">Invalid date</mat-error>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="find-action-button">
+      <button mat-raised-button color="primary" (click)="getDirectionsList()">Find</button>
+    </div>
+    <div *ngIf="!directions.length && searched">There is no directions for given places, please insert different location or increase search distance</div>
+    <app-direction-list-table *ngIf="originSet && destinationSet && directions.length"
+                              [displayedColumns]="renderFieldInTable"
+                              [items]="directions">
+    </app-direction-list-table>
+  </mat-card-content>
+</mat-card>

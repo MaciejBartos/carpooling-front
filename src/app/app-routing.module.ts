@@ -25,9 +25,12 @@ import {VehicleListResolver} from './main/resolver/vehicle-list.resolver';
 import {MapPanelComponent} from './main/map/map-panel.component';
 import {DirectionCreateComponent} from './main/map/direction-create/direction-create.component';
 import {DirectionListComponent} from './main/map/direction-list/direction-list.component';
-import {DirectionsListResolver} from './main/resolver/directions-list.resolver';
 import {DirectionDetailsComponent} from './main/map/direction-details/direction-details.component';
 import {DirectionDetailsResolver} from './main/resolver/direction-details.resolver';
+import {DirectionsCreatedByUserComponent} from './main/map/directions-created-by-user/directions-created-by-user.component';
+import {DirectionsAssignedToUserComponent} from './main/map/directions-assigned-to-user/directions-assigned-to-user.component';
+import {DirectionsAssignedToUserResolver} from './main/resolver/directions-assigned-to-user.resolver';
+import {DirectionsCreatedByUserResolver} from './main/resolver/directions-created-by-user.resolver';
 
 const routes: Routes = [
   {
@@ -52,6 +55,16 @@ const routes: Routes = [
       {
         path: 'edit/password',
         component: EditAccountPasswordComponent
+      },
+      {
+        path: 'directions/created',
+        component: DirectionsCreatedByUserComponent,
+        resolve: {directions: DirectionsCreatedByUserResolver}
+      },
+      {
+        path: 'directions/assigned',
+        component: DirectionsAssignedToUserComponent,
+        resolve: {directions: DirectionsAssignedToUserResolver}
       }
     ]},
   {
@@ -115,8 +128,7 @@ const routes: Routes = [
       },
       {
         path: 'list',
-        component: DirectionListComponent,
-        resolve: {directions: DirectionsListResolver}
+        component: DirectionListComponent
       },
       {
         path: ':id',

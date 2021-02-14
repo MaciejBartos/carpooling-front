@@ -50,6 +50,7 @@ export interface AccountDetails {
   account: Account;
   personalData: PersonalData;
   address: Address;
+  roles: string[];
 }
 
 export interface SignUp {
@@ -80,7 +81,6 @@ export interface SignInResponse {
 
 export enum Role {
   ROLE_USER = 'ROLE_USER',
-  ROLE_DRIVER = 'ROLE_DRIVER',
   ROLE_ADMIN = 'ROLE_ADMIN'
 }
 
@@ -149,6 +149,7 @@ export interface VehicleDetailsForList {
   id: string;
   brand: string;
   model: string;
+  numberOfSeats: number;
 }
 
 export interface VehicleAssignedToAccountResponse {
@@ -191,6 +192,7 @@ export interface DirectionDetailsForList {
   driverName: string;
   driverSurname: string;
   travelDate: Date;
+  deleteAction: boolean;
 }
 
 export interface GetDirectionsResponse {
@@ -198,6 +200,7 @@ export interface GetDirectionsResponse {
 }
 
 export interface GetDirectionDetailsResponse {
+  id: string;
   vehicleBrand: string;
   vehicleModel: string;
   vehicleProductionYear: string;
@@ -210,5 +213,35 @@ export interface GetDirectionDetailsResponse {
   steps: LatitudeLongitude[];
   travelDate: Date;
   numberOfAvailableSeats: number;
+  assignAction: boolean;
+  resignAction: boolean;
+}
+
+export interface GetDirectionForGivenCoordinatesRequest {
+  origin: LatitudeLongitude;
+  destination: LatitudeLongitude;
+  distance: number;
+  travelDate: Date;
+}
+
+export interface AssignToDirectionRequest {
+  directionId: string;
+}
+
+export interface ResignFromDirectionRequest {
+  directionId: string;
+}
+
+export interface CreateDirectionResponse {
+  directionId: string;
+}
+
+export interface UpdateUserRolesRequest {
+  accountId: string;
+  roles: string[];
+}
+
+export interface AvailableRolesResponse {
+  roles: string[];
 }
 

@@ -1,0 +1,7 @@
+<div>
+  <app-direction-list-table *ngIf="directions.length"
+                            [displayedColumns]="renderFieldInTable"
+                            [items]="directions"
+                            (removeDirectionEvent)="removeDirection($event)">
+  </app-direction-list-table>
+</div>

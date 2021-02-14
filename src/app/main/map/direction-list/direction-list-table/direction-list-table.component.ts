@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DirectionDetailsForList} from '../../../../model/api-model';
-import {DatePipe, formatDate} from '@angular/common';
+import {DatePipe} from '@angular/common';
 import {Router} from '@angular/router';
 
 @Component({
@@ -13,18 +13,32 @@ export class DirectionListTableComponent {
   @Input()
   items: DirectionDetailsForList[] = [];
 
+  @Output()
+  removeDirectionEvent: EventEmitter<string> = new EventEmitter<string>();
+
   pipe = new DatePipe('pl-PL');
 
-  displayedColumns: string[] = ['originAddress', 'destinationAddress', 'driverInfo', 'travelDate', 'action'];
+  @Input()
+  displayedColumns: string[] = [];
 
   constructor(private router: Router) { }
 
   showDate(item: DirectionDetailsForList): string | null {
-    return this.pipe.transform(item.travelDate, 'dd-MM-yyyy hh:mm');
+    const date = new Date(item.travelDate);
+    date.setHours(date.getHours() + 1);
+    return this.pipe.transform(date, 'dd-MM-yyyy HH:mm');
   }
 
   redirectToDetails(id: string): void {
     this.router.navigateByUrl('/map/' + id);
+  }
+
+  isTravelDateInFuture(date: Date): boolean {
+    return new Date(date) > new Date();
+  }
+
+  removeDirection(item: DirectionDetailsForList): void {
+    this.removeDirectionEvent.emit(item.directionId);
   }
 
 }

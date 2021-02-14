@@ -1,9 +1,12 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {VehicleService} from '../../service/vehicle.service';
 import {DirectionCreateMapComponent} from './map/direction-create-map.component';
 import {DirectionService} from '../../service/direction.service';
 import {CreateDirectionRequest, LatitudeLongitude, VehicleDetailsForList} from '../../../model/api-model';
 import {FormControl, Validators} from '@angular/forms';
+import {isDateLaterThan} from '../../../share/validator/date-later-than';
+import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -16,19 +19,25 @@ export class DirectionCreateComponent {
   @ViewChild('map')
   mapComponent: DirectionCreateMapComponent;
   availableVehicles: VehicleDetailsForList[];
+  vehicleFound = false;
+  selectedVehicle: FormControl;
 
   originCoordinates: LatitudeLongitude;
-  originAddress: string;
+  originAddress = '';
   destinationCoordinates: LatitudeLongitude;
-  destinationAddress: string;
+  destinationAddress = '';
   travelDateForm: FormControl;
   numberOfFreeSeatsForm: FormControl;
 
   constructor(private vehicleService: VehicleService,
-              private directionService: DirectionService) {
+              private directionService: DirectionService,
+              private toastrService: ToastrService,
+              private router: Router) {
     this.vehicleService.getVehicleAssignedToAccount().subscribe(result => {
       this.availableVehicles = result.vehicles;
+      this.vehicleFound = true;
     });
+    this.numberOfFreeSeatsForm = new FormControl(null);
     this.initFormControls();
   }
 
@@ -44,15 +53,39 @@ export class DirectionCreateComponent {
       travelDate: this.travelDateForm.value,
       numberOfFreeSeats: this.numberOfFreeSeatsForm.value
     };
-    this.directionService.createDirection(request).subscribe();
+    this.directionService.createDirection(request).subscribe(result => {
+      this.toastrService.success('Successfully created direction');
+      this.router.navigateByUrl('/map/' + result.directionId);
+    }, () => {
+      this.toastrService.error('Something went wrong, please try again');
+    });
+  }
+
+  onSelectedVehicleChange(): void {
+    this.initNumberOfFreeSeatsFormAccordingToSelectedVehicle();
+  }
+
+  validateForms(): boolean {
+    return this.originAddress !== '' && this.destinationAddress !== '' &&
+      this.travelDateForm.valid && this.selectedVehicle.valid &&
+      this.numberOfFreeSeatsForm.valid;
   }
 
   private initFormControls(): void {
-    this.travelDateForm = new FormControl(new Date(), [
+    this.selectedVehicle = new FormControl(null, [
       Validators.required
     ]);
-    this.numberOfFreeSeatsForm = new FormControl(2, [
-      Validators.required
+    this.travelDateForm = new FormControl(null, [
+      Validators.required,
+      isDateLaterThan(new Date())
+    ]);
+  }
+
+  private initNumberOfFreeSeatsFormAccordingToSelectedVehicle(): void {
+    this.numberOfFreeSeatsForm = new FormControl(null, [
+      Validators.required,
+      Validators.min(1),
+      Validators.max(this.selectedVehicle.value.numberOfSeats - 1)
     ]);
   }
 

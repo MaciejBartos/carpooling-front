@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="main-toolbar">
   <span>Carpooling app</span>
   <div class="guest-actions-container" *ngIf="getUserLogin() === ''">
-        <button mat-button [routerLink]="['login']">Zaloguj się</button>
-        <button mat-button [routerLink]="['register']">Zarejestruj się</button>
+        <button mat-button [routerLink]="['login']">Sign in</button>
+        <button mat-button [routerLink]="['register']">Sign up</button>
   </div>
   <nav mat-tab-nav-bar color="primary" backgroundColor="primary" mat-align-tabs="center" class="wrapper-horizontal" *ngIf="isLoggedIn()">
     <ng-container *ngFor="let link of navLinks">
@@ -21,10 +21,6 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="['user']">
-        <mat-icon>dialpad</mat-icon>
-        <span>panel użytkowika</span>
-      </button>
       <button mat-menu-item (click)="signOut()">
         <mat-icon>voicemail</mat-icon>
         <span>Logout</span>

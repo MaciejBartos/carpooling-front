@@ -68,12 +68,12 @@ export class RegistrationComponent implements OnInit {
     this.cityControl = new FormControl('', [
       Validators.maxLength(64),
       Validators.required,
-      Validators.pattern(new RegExp('^[A-Za-zążźęćół]+$'))
+      Validators.pattern(new RegExp('^[A-Za-zążźęćół ]+$'))
     ]);
     this.streetControl = new FormControl('', [
       Validators.maxLength(64),
       Validators.required,
-      Validators.pattern(new RegExp('^[A-Za-zążźęćół]+$'))
+      Validators.pattern(new RegExp('^[A-Za-zążźęćół ]+$'))
     ]);
     this.houseNumberControl = new FormControl('', [
       Validators.maxLength(10),

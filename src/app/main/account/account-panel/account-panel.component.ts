@@ -26,6 +26,16 @@ export class AccountPanelComponent {
         label: 'Edit password',
         link: '/user/edit/password',
         forRoles: [Role.ROLE_USER]
+      },
+      {
+        label: 'My directions',
+        link: '/user/directions/created',
+        forRoles: [Role.ROLE_USER]
+      },
+      {
+        label: 'Directions assigned to',
+        link: '/user/directions/assigned',
+        forRoles: [Role.ROLE_USER]
       }
     ];
   }

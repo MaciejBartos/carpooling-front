@@ -26,12 +26,12 @@ export class NavBarComponent implements OnInit {
         {
           label: 'Maps',
           link: '/map',
-          forRoles: [Role.ROLE_USER, Role.ROLE_ADMIN]
+          forRoles: [Role.ROLE_USER]
         },
         {
           label: 'Profile',
           link: '/user',
-          forRoles: [Role.ROLE_USER, Role.ROLE_ADMIN]
+          forRoles: [Role.ROLE_USER]
         },
         {
           label: 'Admin panel',

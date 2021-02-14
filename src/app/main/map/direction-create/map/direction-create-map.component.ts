@@ -101,13 +101,26 @@ export class DirectionCreateMapComponent {
   extractWaypointsFromDirectionsResult(): LatitudeLongitude[] {
     const steps: LatitudeLongitude[] = [];
     const directionsSteps = this.direction.routes[0].legs[0].steps;
-
-    console.log('origin ', this.origin);
-    console.log('steps ', directionsSteps);
-    console.log('destination ', this.destination);
     directionsSteps.forEach(step => steps.push({ latitude: step.end_location.lat(), longitude: step.end_location.lng()}));
     steps.pop();
+    if (steps.length > 25) {
+      return this.reduceNumberOfWaypoints(steps);
+    }
     return steps;
+  }
+
+  private reduceNumberOfWaypoints(waypoint: LatitudeLongitude[]): LatitudeLongitude[] {
+    let max;
+    let stepPositionToRemove;
+    console.log('before reduce: ', waypoint);
+    do {
+      max = waypoint.length;
+      stepPositionToRemove = Math.floor(Math.random() * (max - 1));
+      waypoint.splice(stepPositionToRemove, 1);
+    } while (waypoint.length > 25);
+
+    console.log('after reduce: ', waypoint);
+    return waypoint;
   }
 
   getLatitudeFromWaypoint(waypoint: DirectionsWaypoint): number {

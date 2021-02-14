@@ -44,6 +44,10 @@ import { DirectionCreateMapComponent } from './main/map/direction-create/map/dir
 import { DirectionListTableComponent } from './main/map/direction-list/direction-list-table/direction-list-table.component';
 import {registerLocaleData} from '@angular/common';
 import { DirectionDetailsComponent } from './main/map/direction-details/direction-details.component';
+import {MatSelectModule} from '@angular/material/select';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import { DirectionsAssignedToUserComponent } from './main/map/directions-assigned-to-user/directions-assigned-to-user.component';
+import { DirectionsCreatedByUserComponent } from './main/map/directions-created-by-user/directions-created-by-user.component';
 
 registerLocaleData(localePL);
 
@@ -77,6 +81,8 @@ registerLocaleData(localePL);
     DirectionCreateMapComponent,
     DirectionListTableComponent,
     DirectionDetailsComponent,
+    DirectionsAssignedToUserComponent,
+    DirectionsCreatedByUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +103,9 @@ registerLocaleData(localePL);
     }),
     MatPaginatorModule,
     AgmDirectionModule,
+    MatSelectModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},

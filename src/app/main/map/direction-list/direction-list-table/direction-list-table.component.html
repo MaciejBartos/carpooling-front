@@ -19,10 +19,18 @@
     <td mat-cell *matCellDef="let item">{{showDate(item)}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="action">
+  <ng-container matColumnDef="detailsAction">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let item">
       <button mat-raised-button color="primary" (click)="redirectToDetails(item.directionId)">Details</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="removeAction">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let item">
+      <button mat-raised-button color="warn" *ngIf="isTravelDateInFuture(item.travelDate) && item.deleteAction"
+              (click)="removeDirection(item)">Remove</button>
     </td>
   </ng-container>
 

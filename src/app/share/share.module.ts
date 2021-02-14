@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -34,7 +34,8 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatMenuModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatGridListModule
 
   ],
   exports: [
@@ -51,7 +52,8 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatMenuModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatGridListModule
   ],
 })
 export class ShareModule { }
