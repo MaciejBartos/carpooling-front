@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class VehicleListComponent {
 
-  vehicles: VehicleDetailsForList[];
+  vehicles: VehicleDetailsForList[] = [];
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.vehicles = this.activatedRoute.snapshot.data.vehicles.vehicles;

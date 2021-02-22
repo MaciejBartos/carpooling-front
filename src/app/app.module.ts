@@ -8,7 +8,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavBarComponent} from './layout/nav-bar/nav-bar.component';
 import {ShareModule} from './share/share.module';
 import {AccountPanelComponent} from './main/account/account-panel/account-panel.component';
-import {AccountDetailsComponent} from './main/account/account-panel/account-details/account-details.component';
 import {LoginComponent} from './main/authentication/login/login.component';
 import {RegistrationComponent} from './main/authentication/registration/registration.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -56,7 +55,6 @@ registerLocaleData(localePL);
     AppComponent,
     NavBarComponent,
     AccountPanelComponent,
-    AccountDetailsComponent,
     LoginComponent,
     RegistrationComponent,
     EditAccountDetailsComponent,

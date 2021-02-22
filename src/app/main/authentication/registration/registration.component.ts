@@ -104,14 +104,12 @@ export class RegistrationComponent implements OnInit {
     this.authenticationService.registerUser(signUp).subscribe(() => {
       this.router.navigateByUrl('');
       this.toastrService.success('Successfully registered. To finish registration process your have to confirm your account');
-    }, error => {
-      if (error.error.error === 'account.email.used.validation.exception') {
-        console.log('siema');
+    }, result => {
+      if (result.error.error === 'account.email.used.validation.exception') {
         this.uniqueEmail = false;
         this.emailControl.markAsPristine();
         this.emailControl.updateValueAndValidity();
-        console.log(this.emailControl.valid);
-      } else if (error.error.error === 'account.login.used.validation.exception') {
+      } else if (result.error.error === 'account.login.used.validation.exception') {
         this.uniqueLogin = false;
         this.loginControl.markAsPristine();
         this.loginControl.updateValueAndValidity();

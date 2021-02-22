@@ -4,7 +4,6 @@ import {AccountPanelComponent} from './main/account/account-panel/account-panel.
 import {LoginComponent} from './main/authentication/login/login.component';
 import {RegistrationComponent} from './main/authentication/registration/registration.component';
 import {EditAccountDetailsComponent} from './main/account/account-panel/edit-account-details/edit-account-details.component';
-import {AccountDetailsComponent} from './main/account/account-panel/account-details/account-details.component';
 import {AccountDetailsResolver} from './main/resolver/account-details.resolver';
 import {EditAccountPasswordComponent} from './main/account/account-panel/edit-account-password/edit-account-password.component';
 import {AdminAccountListComponent} from './main/admin/admin-account-list/admin-account-list.component';
@@ -39,13 +38,8 @@ const routes: Routes = [
     children : [
       {
         path: '',
-        redirectTo: '/user/details',
+        redirectTo: '/user/edit/account',
         pathMatch: 'full'
-      },
-      {
-        path: 'details',
-        component: AccountDetailsComponent,
-        resolve: {account: AccountDetailsResolver}
       },
       {
         path: 'edit/account',

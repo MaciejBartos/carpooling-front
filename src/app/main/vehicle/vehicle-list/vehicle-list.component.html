@@ -1,1 +1,3 @@
-<app-vehicle-list-table [items]="vehicles"></app-vehicle-list-table>
+<div>
+  <app-vehicle-list-table *ngIf="vehicles.length" [items]="vehicles"></app-vehicle-list-table>
+</div>

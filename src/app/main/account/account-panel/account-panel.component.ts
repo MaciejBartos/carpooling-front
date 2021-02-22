@@ -13,11 +13,6 @@ export class AccountPanelComponent {
   constructor() {
     this.navLinks = [
       {
-        label: 'Details',
-        link: '/user/details',
-        forRoles: [Role.ROLE_USER]
-      },
-      {
         label: 'Edit data',
         link: '/user/edit/account',
         forRoles: [Role.ROLE_USER]

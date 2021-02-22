@@ -3,12 +3,12 @@
   <mat-card-content>
     <mat-form-field class="login-form-field">
       <mat-label>Login</mat-label>
-      <input matInput matNativeControl [formControl]="loginControl" required>
+      <input matInput matNativeControl [formControl]="loginControl" autocomplete="off" required>
       <mat-error *ngIf="loginControl.hasError('required')">Login is required</mat-error>
     </mat-form-field>
     <mat-form-field class="password-form-field">
       <mat-label>Password</mat-label>
-      <input matInput matNativeControl type="password" [formControl]="passwordControl" required>
+      <input matInput matNativeControl type="password" [formControl]="passwordControl" autocomplete="off" required>
       <mat-error *ngIf="passwordControl.hasError('required')">Password is required</mat-error>
     </mat-form-field>
     <mat-card-actions class="actions">
