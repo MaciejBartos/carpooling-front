@@ -20,12 +20,14 @@
 
 <mat-google-maps-autocomplete country="pl"
                               type="address"
+                              addressLabelText="Origin address"
                               (onAutocompleteSelected)="emitOriginAddress($event)"
                               (onLocationSelected)="setOriginMarker($event)">
 </mat-google-maps-autocomplete>
 
 <mat-google-maps-autocomplete country="pl"
                               type="address"
+                              addressLabelText="Destination address"
                               (onAutocompleteSelected)="emitDestinationAddress($event)"
                               (onLocationSelected)="setDestinationMarker($event)">
 </mat-google-maps-autocomplete>

@@ -9,14 +9,14 @@
                                 (originAddressEvent)="originAddress=$event"
                                 (originCoordinatesEvent)="originCoordinates=$event"></app-direction-create-map>
       <mat-form-field class="travel-date-form">
-        <mat-label>Travel date</mat-label>
+        <mat-label>Travel date*</mat-label>
         <input matInput matNativeControl [formControl]="travelDateForm" [owlDateTime]="dt" [owlDateTimeTrigger]="dt" autocomplete="off">
         <mat-error *ngIf="travelDateForm.hasError('required')">Travel date is required</mat-error>
         <mat-error *ngIf="travelDateForm.hasError('dateLater')">Travel date have to be later than today date</mat-error>
         <owl-date-time #dt></owl-date-time>
       </mat-form-field>
       <mat-form-field class="vehicle-selector-form" appearance="standard">
-        <mat-label>Select vehicle</mat-label>
+        <mat-label>Select vehicle*</mat-label>
         <mat-select [formControl]="selectedVehicle" (selectionChange)="onSelectedVehicleChange()">
           <mat-option *ngFor="let vehicle of availableVehicles"
                       [value]="vehicle">{{vehicle.brand + ' ' + vehicle.model}}</mat-option>
@@ -24,7 +24,7 @@
         <mat-error *ngIf="selectedVehicle.hasError('required')">You have to select vehicle</mat-error>
       </mat-form-field>
       <mat-form-field *ngIf="selectedVehicle.value !== null" class="number-of-available-seats-form">
-        <mat-label>Number of available seats</mat-label>
+        <mat-label>Number of available seats*</mat-label>
         <input matInput matNativeControl [formControl]="numberOfFreeSeatsForm" type="number" autocomplete="off" required>
         <mat-error *ngIf="numberOfFreeSeatsForm.hasError('required')">Number of available seats is required</mat-error>
         <mat-error *ngIf="numberOfFreeSeatsForm.hasError('min')">Number must be grater than 1</mat-error>
